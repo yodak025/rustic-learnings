@@ -9,7 +9,7 @@ const nav = [
 export function SiteHeader() {
   return (
     <header className="border-b border-border">
-      <div className="mx-auto flex max-w-3xl items-center justify-between gap-6 px-6 py-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
         <Link href="/" className="font-mono text-sm font-semibold tracking-tight">
           rustic<span className="text-brand">/</span>learnings
         </Link>

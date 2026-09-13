@@ -38,7 +38,7 @@ export default async function LessonPage({
   const next = course.lessons[index + 1];
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-12">
       <nav aria-label="Curso" className="font-mono text-xs text-muted-foreground">
         <Link href={`/courses/${course.slug}`} className="hover:text-foreground">
           {course.title}

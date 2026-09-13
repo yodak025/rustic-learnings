@@ -30,7 +30,7 @@ export default async function CoursePage({
   if (!course) notFound();
 
   return (
-    <div className="flex flex-col gap-12">
+    <div className="mx-auto flex max-w-3xl flex-col gap-12 px-6 py-16">
       <header className="flex flex-col gap-4">
         <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           Curso
