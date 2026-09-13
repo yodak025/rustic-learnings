@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function CoursesPage() {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="mx-auto flex max-w-3xl flex-col gap-10 px-6 py-16">
       <header className="flex flex-col gap-3">
         <h1 className="text-2xl font-semibold tracking-tight">Cursos</h1>
         <p className="max-w-prose text-pretty leading-relaxed text-muted-foreground">

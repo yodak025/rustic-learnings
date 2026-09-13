@@ -7,7 +7,7 @@ export default function Home() {
   const course = courses[0];
 
   return (
-    <div className="flex flex-col gap-20">
+    <div className="mx-auto flex max-w-3xl flex-col gap-20 px-6 py-16">
       <section className="flex flex-col gap-6 pt-8">
         <h1 className="max-w-2xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
           La informática deja de dar vértigo cuando ves lo que hay dentro.
