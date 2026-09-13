@@ -1,0 +1,27 @@
+# =============================================================================
+# docker-compose.yaml — rustic-learnings (despliegue)
+# =============================================================================
+# El servidor no construye: ejecuta la imagen publicada en GHCR por CI.
+# IMAGE_TAG la fija el pipeline en el fichero .env junto a este compose;
+# contiene el SHA del commit desplegado (etiqueta inmutable, ver docs/cicd.md).
+#
+# Manual:  IMAGE_TAG=<sha|latest> docker compose up -d
+# =============================================================================
+
+services:
+  rustic-learnings:
+    image: ghcr.io/yodak025/rustic-learnings:${IMAGE_TAG:?set IMAGE_TAG (commit SHA)}
+    container_name: rustic-learnings
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=rusticlearnings.duckdns.org
+      - LETSENCRYPT_HOST=rusticlearnings.duckdns.org
+      - VIRTUAL_PORT=3000
+    networks:
+      - web-proxy
+
+networks:
+  # Creada por el orquestador en /opt/LTAW-Practicas (nginx-proxy + acme).
+  web-proxy:
+    name: ltaw-practicas_web-proxy
+    external: true
