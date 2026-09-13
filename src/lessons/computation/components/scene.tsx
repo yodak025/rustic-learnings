@@ -92,12 +92,18 @@ export function Scene({ html }: { html: string }) {
 
   /* ---------- línea activa en el editor ---------- */
 
-  useEffect(() => {
+  const setActiveLine = useCallback((line: number | null) => {
     const lines = codeRef.current?.querySelectorAll<HTMLElement>(".line");
     if (!lines) return;
-    const active = SNAPSHOTS[step].line;
-    lines.forEach((el, i) => el.classList.toggle("is-active", i + 1 === active));
-  }, [step]);
+    lines.forEach((el, i) => el.classList.toggle("is-active", i + 1 === line));
+  }, []);
+
+  // Sincroniza en navegación (retroceso, reset). Durante la ejecución,
+  // runStep marca la línea ANTES de animar: el resaltado siempre va
+  // por delante del resto de la coreografía.
+  useEffect(() => {
+    setActiveLine(SNAPSHOTS[step].line);
+  }, [step, setActiveLine]);
 
   /* ---------- coreografía por paso ---------- */
 
@@ -114,6 +120,11 @@ export function Scene({ html }: { html: string }) {
 
     setCallout(null);
     setCpuStatus("ejecutando");
+
+    // La línea a ejecutar se marca primero: el ojo sabe de dónde
+    // saldrá la instrucción antes de que empiece a volar.
+    setActiveLine(def.line);
+    await wait(350);
 
     // La instrucción viaja del código al procesador.
     await fly(line, cpu, lineText, "instruction");
