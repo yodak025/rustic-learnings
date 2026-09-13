@@ -1,0 +1,167 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================================
+   Capa 1 — Paleta semántica (misma convención que dotfiles/color-themes)
+   Roles: background · primary/secondary/tertiary (superficies, de más a
+   menos elevada) · accent · text-primary/text-secondary · alert · success
+   ========================================================================== */
+
+:root {
+  --palette-background: #ffffff;
+  --palette-primary: #e2e8f0; /* slate-200 */
+  --palette-secondary: #f1f5f9; /* slate-100 */
+  --palette-tertiary: #f8fafc; /* slate-50  */
+  --palette-accent: #4f46e5; /* indigo-600 */
+  --palette-text-primary: #0f172a; /* slate-900 */
+  --palette-text-secondary: #475569; /* slate-600 */
+  --palette-alert: #dc2626; /* red-600 */
+  --palette-success: #059669; /* emerald-600 */
+}
+
+.dark {
+  --palette-background: #020617; /* slate-950 */
+  --palette-primary: #334155; /* slate-700 */
+  --palette-secondary: #1e293b; /* slate-800 */
+  --palette-tertiary: #0f172a; /* slate-900 */
+  --palette-accent: #818cf8; /* indigo-400 */
+  --palette-text-primary: #f1f5f9; /* slate-100 */
+  --palette-text-secondary: #94a3b8; /* slate-400 */
+  --palette-alert: #f87171; /* red-400 */
+  --palette-success: #34d399; /* emerald-400 */
+}
+
+/* ============================================================================
+   Capa 2 — Tokens de shadcn/ui, derivados de la paleta.
+   Los componentes consumen esta capa; la identidad vive en la capa 1.
+   ========================================================================== */
+
+:root {
+  --radius: 0.625rem;
+
+  --background: var(--palette-background);
+  --foreground: var(--palette-text-primary);
+
+  --card: var(--palette-background);
+  --card-foreground: var(--palette-text-primary);
+  --popover: var(--palette-background);
+  --popover-foreground: var(--palette-text-primary);
+
+  --primary: var(--palette-accent);
+  --primary-foreground: #ffffff;
+
+  --secondary: var(--palette-secondary);
+  --secondary-foreground: var(--palette-text-primary);
+
+  --muted: var(--palette-secondary);
+  --muted-foreground: var(--palette-text-secondary);
+
+  --accent: var(--palette-secondary);
+  --accent-foreground: var(--palette-text-primary);
+
+  --destructive: var(--palette-alert);
+
+  --border: var(--palette-primary);
+  --input: var(--palette-primary);
+  --ring: var(--palette-accent);
+
+  --chart-1: var(--palette-accent);
+  --chart-2: var(--palette-success);
+  --chart-3: var(--palette-text-secondary);
+  --chart-4: var(--palette-alert);
+  --chart-5: var(--palette-primary);
+
+  --sidebar: var(--palette-tertiary);
+  --sidebar-foreground: var(--palette-text-primary);
+  --sidebar-primary: var(--palette-accent);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--palette-secondary);
+  --sidebar-accent-foreground: var(--palette-text-primary);
+  --sidebar-border: var(--palette-primary);
+  --sidebar-ring: var(--palette-accent);
+}
+
+.dark {
+  --card: var(--palette-tertiary);
+  --card-foreground: var(--palette-text-primary);
+  --popover: var(--palette-tertiary);
+  --popover-foreground: var(--palette-text-primary);
+
+  --primary-foreground: #020617;
+  --sidebar-primary-foreground: #020617;
+}
+
+/* ============================================================================
+   Registro de utilidades Tailwind
+   ========================================================================== */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Roles de la paleta expuestos directamente */
+  --color-surface-1: var(--palette-primary);
+  --color-surface-2: var(--palette-secondary);
+  --color-surface-3: var(--palette-tertiary);
+  --color-brand: var(--palette-accent);
+  --color-success: var(--palette-success);
+  --color-alert: var(--palette-alert);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
